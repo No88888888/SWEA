@@ -43,12 +43,13 @@ for test_case in range(1,t+1):
 T = int(input())
 
 for test in range(1, T+1):
-    a = list(map(int, input().split()))
+    a = map(int, input().split())
     oddsum = 0
     for i in a:
         if i%2 != 0:
             oddsum += i
     print('#'+str(test), oddsum)
+
 
 
 
