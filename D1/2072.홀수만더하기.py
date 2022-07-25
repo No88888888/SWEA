@@ -20,7 +20,7 @@
 (t는 테스트 케이스의 번호를 의미하며 1부터 시작한다.)"""
 
 
-t = int(input())
+"""t = int(input())
 
 for test in range(1, t+1):
     a = map(int, input().split())
@@ -28,7 +28,7 @@ for test in range(1, t+1):
     for i in a:
         if i%2 != 0:
             oddsum += i
-    print('#', test, ' ', oddsum)
+    print('#', test, ' ', oddsum)"""
 
 """t = int(input())
  
@@ -40,7 +40,15 @@ for test_case in range(1,t+1):
             answer += i
     print("#"+str(test_case),str(answer))"""
 
+T = int(input())
 
+for test in range(1, T+1):
+    a = list(map(int, input().split()))
+    oddsum = 0
+    for i in a:
+        if i%2 != 0:
+            oddsum += i
+    print('#'+str(test), oddsum)
 
 
 
