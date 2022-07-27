@@ -43,8 +43,8 @@ for i in range(1, T+1):
     list.insert(4, '/')
     list.insert(7, '/')
      
-    MM = int(list[5])+(list[6])
-    DD = int(list[8])+(list[9])
+    MM = int(str(list[5])+str(list[6]))
+    DD = int(str(list[8])+str(list[9]))
     
     if not 1<= MM <= 12:
         print(f'#{i} -1')
