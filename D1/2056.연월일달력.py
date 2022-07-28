@@ -39,20 +39,20 @@ T = int(input())
 for i in range(1, T+1):
         
     year = input()
-    list = [str(j) for j in year]
+    list = [str(j) for j in year]  #입력한 연도를 str형태 list로 만들기
     list.insert(4, '/')
-    list.insert(7, '/')
+    list.insert(7, '/')            # 연월일 구분 자리에 '/' 삽입
      
-    MM = int(str(list[5])+str(list[6]))
-    DD = int(str(list[8])+str(list[9]))
-    
+    MM = int(str(list[5])+str(list[6])) #월자리 요소를 합하고 정수로 변환
+    DD = int(str(list[8])+str(list[9])) #일자리 요소를 합하고 정수로 변환
+                                        # ex) '1', '2', -> 12(정수)
     if not 1<= MM <= 12:
         print(f'#{i} -1')
-    elif MM%2 and not 1 <= DD <= 31:
+    elif MM%2 and not 1 <= DD <= 31:    # 홀수월이고 1 <= 일 <= 31 아니라면
         print(f'#{i} -1')
-    elif list[5] == '0' and list[6] == '2' and not 1 <= DD <= 28:
+    elif MM == 2 and not 1 <= DD <= 28: #2월이고 1 <= 일 <= 28 아니라면
         print(f'#{i} -1')
-    elif MM>3 and MM%2 == 0 and not 1<= DD <= 30:
+    elif MM>3 and MM%2 == 0 and not 1<= DD <= 30: #월 3보다 크면서 짝수월이고 1<= 일 <= 30 아니라면
             print(-1)
     else:
         print(f'#{i}', ''.join(list))
