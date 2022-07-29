@@ -75,17 +75,4 @@ MM = int(str(list[5])+str(list[6]))
     elif list[5] == 1 and list[6] != 0 and list[6] != 1 and list[6] != 2:
         print(-1)
         if 
-        """          
-            
-            
-        
-    #if 
-    #if list[6]
-    
-    
-    
-    
-    
-    
-    #''.join(list)
-    
+        """      
