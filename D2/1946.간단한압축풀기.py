@@ -47,16 +47,41 @@ CC
 (t는 테스트 케이스의 번호를 의미하며 1부터 시작한다.)
 """
 
-#T = int(input())
+T = int(input())
 
-#for t in range(T):
-#    a, b = map(str, input().split())
+for t in range(T):
+    list = []
     
-for i in range(int(input())):
+    for i in range(int(input())):
+        a, b = input().split()
+        for _ in range(int(b)):
+            list.append(a)
+    print(f'#{t+1}')
+    for k in range(0,len(list),10):
+        print(''.join(list[k:k+10]))
+   
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+""" for i in range(int(input())):
     print('#'+str(i+1))
     t=''
     for j in range(int(input())):
         a,b=input().split()
         t+=a*int(b)
     for k in range(0,len(t),10):
-        print(t[k:k+10])
+        print(t[k:k+10]) """
