@@ -35,8 +35,8 @@ C의 경우는 반대로 오른쪽 조망은 2칸이 확보가 되었지만 왼�
 '''
 
 
-import sys
-sys.stdin = open('input.txt', 'r')
+# import sys
+# sys.stdin = open('input.txt', 'r')
 
 for tc in range(10):
     N = int(input())
@@ -47,18 +47,18 @@ for tc in range(10):
         if A[i] > A[i-2] and A[i] > A[i-1] and A[i] > A[i+1] and A[i] > A[i+2]:     #idx의 값이 양옆 두칸씩보다 크다면
             list_side = []
             if A[i-2] >= A[i-1]:                                                   # 양옆 4개의 idx들의 값을 비교하여 그 중
-                list_side.append(A[i-2])                                           # 가장 큰 값을 찾아내 A[i]의 차를
+                list_side += [A[i-2]]                                           # 가장 큰 값을 찾아내 A[i]의 차를
             else:                                                                  # count에 추가해준다
-                list_side.append(A[i-1])
+                list_side += [A[i-1]]
             if A[i+2] >= A[i+1]:
-                list_side.append(A[i+2])
+                list_side += [A[i+2]]
             else:
-                list_side.append(A[i+1])
+                list_side += [A[i+1]]
             if list_side[0] >= list_side[1]:
                 count += (A[i] - list_side[0])
             else:
                 count += (A[i] - list_side[1])
-        else:
+        else:       # else 없어도됨
             continue
     print(f'#{tc+1} {count}')
 
