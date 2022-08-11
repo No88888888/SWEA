@@ -77,17 +77,6 @@ v
 각 줄마다 "#T" (T는 테스트 케이스 번호)를 출력한 뒤, 답을 출력한다.
 '''
 
-# def max_min(list):
-#     max = min = 0
-#     for i in range(1, len(list)-1):
-#         max = min = list[0] + list[1] + list[2]
-        
-#         if max <=  list[i-1] + list[i] + list[i+1]:
-#             max = list[i-1] + list[i] + list[i+1]
-#         if min >= list[i-1] + list[i] + list[i+1]:
-#             min = list[i-1] + list[i] + list[i+1]
-#     return max - min
-
 def bubble(B, n):
     for i in range(n):
         for j in range(n-1-i):
@@ -109,4 +98,15 @@ for tc in range(int(input())):
     bubble(B, len(B))
    
     print(f'#{tc+1} {B[-1] - B[0]}')
+# def max_min(list):
+#     max = min = 0
+#     for i in range(1, len(list)-1):
+#         max = min = list[0] + list[1] + list[2]
+        
+#         if max <=  list[i-1] + list[i] + list[i+1]:
+#             max = list[i-1] + list[i] + list[i+1]
+#         if min >= list[i-1] + list[i] + list[i+1]:
+#             min = list[i-1] + list[i] + list[i+1]
+#     return max - min
+
     
