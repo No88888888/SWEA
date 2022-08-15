@@ -35,58 +35,59 @@
 
 '''
 for tc in range(int(input())):
-    sdoku = [list(map(int, input().split())) for _ in range(9)]
-    sep = [[] for _ in range(9)]
+    sdoku = [list(map(int, input().split())) for _ in range(9)] # tc 스도쿠 입력
+    sep = [[] for _ in range(9)]        # 9개 박스용 빈 리스트
+    result = 1                          # 결과 위한 초기값
     
     for i in range(9):
+        for j in range(8):              # 0과 1~8까지 비교 1과 2~8까지 비교 방식 
+            for k in range(j+1,9):
+                if sdoku[i][j] == sdoku[i][k] or sdoku[j][i] == sdoku[k][i]: # 행,열 동시 비교 
+                    result = 0          # 중복 있다면 result = 0
+                    
+    i = 0
+    j = 0
+    while 0 <= i < 3:                   # 작은 박스 내 비교 위한 박스 숫자들로 이루어진 리스트 sep 제작
+        while 0 <= j < 3:
+            sep[0].append(sdoku[i][j])
+            j += 1
+        while 3 <= j < 6:
+            sep[1].append(sdoku[i][j])
+            j += 1
+        while 6 <= j < 9:
+            sep[2].append(sdoku[i][j])
+            j += 1
+        j = 0
+        i += 1
+    while 3 <= i < 6:
+        while 0 <= j < 3:
+            sep[3].append(sdoku[i][j])
+            j += 1
+        while 3 <= j < 6:
+            sep[4].append(sdoku[i][j])
+            j += 1
+        while 6 <= j < 9:
+            sep[5].append(sdoku[i][j])
+            j += 1
+        j = 0
+        i += 1
+    while 6 <= i < 9:
+        while 0 <= j < 3:
+            sep[6].append(sdoku[i][j])
+            j += 1
+        while 3 <= j < 6:
+            sep[7].append(sdoku[i][j])
+            j += 1
+        while 6 <= j < 9:
+            sep[8].append(sdoku[i][j])
+            j += 1
+        j = 0
+        i += 1
+        
+    for i in range(9):
         for j in range(8):
             for k in range(j+1,9):
-                if sdoku[i][j] == sdoku[i][k] or sdoku[j][i] == sdoku[k][i]:
-                    print(f'#{tc+1} 0')
-    for i in range(9):
-        for j in range(9):
-                        
-    for i in range(9):
-        for j in range(9):
-            while 0 <= i < 3:
-                while 0 <= j < 3:
-                    sep[0].append(sdoku[i][j])
-                    j += 1
-                while 3 <= j < 6:
-                    sep[1].append(sdoku[i][j])
-                    j += 1
-                while 6 <= j < 9:
-                    sep[2].append(sdoku[i][j])
-                    j += 1
-                j = 0
-                i += 1
-            while 3 <= i < 6:
-                while 0 <= j < 3:
-                    sep[3].append(sdoku[i][j])
-                    j += 1
-                while 3 <= j < 6:
-                    sep[4].append(sdoku[i][j])
-                    j += 1
-                while 6 <= j < 9:
-                    sep[5].append(sdoku[i][j])
-                    j += 1
-                j = 0
-                i += 1
-            while 6 <= i < 9:
-                while 0 <= j < 3:
-                    sep[6].append(sdoku[i][j])
-                    j += 1
-                while 3 <= j < 6:
-                    sep[7].append(sdoku[i][j])
-                    j += 1
-                while 6 <= j < 9:
-                    sep[8].append(sdoku[i][j])
-                    j += 1
-            j = 0
-            i += 1
-    for i in range(9):
-        for j in range(8):
-            for k in range(j+1,9):
-                if sep[i][j] == sep[i][k]:
-                    print(f'#{tc+1} 0')
-    print(f'#{tc+1} 1')
+                if sep[i][j] == sep[i][k]: # 행,열 비교방식과 같은 방법으로
+                    result = 0             # 박스 내 숫자 중복 된다면 result = 0
+                    
+    print(f'#{tc+1} {result}')             # 중복 없었으면 초기값 1 출력
