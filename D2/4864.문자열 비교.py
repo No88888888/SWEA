@@ -36,7 +36,7 @@ ZZZZAZBCZZZZZ
 각 줄마다 "#T" (T는 테스트 케이스 번호)를 출력한 뒤, 답을 출력한다.
 '''
 for tc in range(int(input())):
-
+## lps ##
     def pre_process(P):             # lps 만드는 함수
         
         lps = [0] * len(P)          # 패턴 길이만큼 빈 리스트 생성
@@ -54,7 +54,7 @@ for tc in range(int(input())):
                     j = j + 1
             
         return lps
-
+## KMP ##
     def KMP(T, P):
         lps = pre_process(P)
         i, j = 0, 0
