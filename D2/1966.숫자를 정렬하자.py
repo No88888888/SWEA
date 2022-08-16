@@ -35,28 +35,3 @@ for tc in range(int(input())):
     num = list(map(int, input().split()))
     result = ' '.join(map(str, select_sort(num)))
     print(f'#{tc+1} {result}')
-
-    
-# def selection_sort(nums):
-
-#     for i in range(len(nums) - 1):
-#         min_idx = i
-#         for j in range(i + 1, len(nums)):
-#             if nums[min_idx] > nums[j]:
-#                 min_idx = j
-#         nums[i], nums[min_idx] = nums[min_idx], nums[i]
-
-#         print('기준 자리 : ', i, nums)
-
-
-# numbers = list(map(int, input().split()))
-
-# print('정렬 전')
-# print(numbers)
-# print('---------------------------------')
-
-# selection_sort(numbers)
-
-# print('---------------------------------')
-# print('정렬 후')
-# print(numbers)
