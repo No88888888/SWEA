@@ -35,8 +35,32 @@ N을 입력 받아 크기 N인 파스칼의 삼각형을 출력하는 프로그�
 
 (t는 테스트 케이스의 번호를 의미하며 1부터 시작한다.)
 '''
+# 메모이제이션 활용
+# 실행시간 154ms
+def pascal(N):
+    if N <= 2:
+        return memo[N]
+    
+    pascal(N-1)                         # 재귀호출
+    
+    for i in range(1, N-1):             # 첫항과 끝항은 1로 고정이기 때문에
+        memo[N][i] = memo[N-1][i-1] + memo[N-1][i] # 수학적으로 전 줄 i-1과 i의 합
+    return memo
 
-
+for tc in range(int(input())):
+    N = int(input())
+    memo = [[] for _ in range(N+1)]     # 인덱스 편리 위해 N+1
+    for i in range(1,N+1):              # 인덱스 편리 위해 1, N+1
+        memo[i] += [1]*i                # 메모이제이션 사용
+        
+    pascal(N)
+    
+    print(f'#{tc+1}')
+    for i in range(1,N+1):
+        print(*memo[i])
+        
+# 재귀활용
+# 실행시간 1357ms
 def tri(N):                     
     
     arr = [1]*N
@@ -56,9 +80,5 @@ for tc in range(int(input())):
     for i in range(1, N+1):
         print(' '.join(map(str, tri(i))))
             
-            
-    # Triangle = []
-    # for i in range(1, N+1):
-    #     Triangle += [[1]*i]
-    # for i in range(N):
+
         

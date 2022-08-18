@@ -38,38 +38,31 @@ E개의 줄 이후에는 경로의 존재를 확인할 출발 노드 S와 도착
 '''
 def dfs(v, N):
     top = -1
-     
     visited[v] = 1
     while True:
-        for w in adjList[v]:
-            if visited[w] == 0:
-                top += 1
-                stack[top] = v
-                v = w
-                 
-                visited[w] = 1
+        for w in adjList[v]:        # v위치에서 w가
+            if visited[w] == 0:     # 방문하지 않았다면
+                top += 1            # top 포인터 +1
+                stack[top] = v      # stack 최상위에 v 저장
+                v = w               # w로 v 변환
+                visited[w] = 1      # 새 방문지 w도 1로 방문 표시
                 break
-            if w == N:
-                return 1
-                
-        else:
-            if top != -1:
-                v = stack[top]
-                top -=1
-            else:
-                return 0
-                
-
-
-
+            if w == N:              # 새 방문지가 N, 목적지라면
+                return 1            # 1 반환
+        else:                       # v에서 방문할 w가 없거나 다 방문 했다면
+            if top != -1:           # top이 -1이 아니면
+                v = stack[top]      # stack[top]을 이전 정점인 v로 돌리고
+                top -=1             # top -=1
+            else:                   # top이 -1이라면 출발지 돌아옴
+                return 0            # 0 반환
 
 for tc in range(int(input())):
-    V, E = map(int, input().split())
-    N = V + 1
+    V, E = map(int, input().split())        # 정점, 간선
+    N = V + 1                               # 인덱스 편하게 하기 위해
     adjList = [[] for _ in range(N)]
     for _ in range(E):
         a, b = map(int ,input().split())
-        adjList[a].append(b)
+        adjList[a].append(b)                # 간선 리스트 구축
 
     visited = [0]*N
     stack = [0]*N

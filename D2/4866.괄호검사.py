@@ -33,22 +33,20 @@ for tc in range(int(input())):
     stack = []
     ans = 1
     for i in range(len(case)):
-        if case[i] == '[' or case[i] == '{' or case[i] == '(':
-            stack.append(case[i])
-        if case[i] == ']' or case[i] == '}' or case[i] == ')':
-            if stack == []:
-                ans = 0
+        if case[i] == '{' or case[i] == '(':                   # 왼쪽 괄호 시
+            stack.append(case[i])                              # stack에 추가
+        if case[i] == '}' or case[i] == ')':                   # 오른쪽 괄호 시
+            if stack == []:                                    # stack 비어있다면
+                ans = 0                                        # 짝이 안맞음
                 break
-            elif stack[-1] == '[' and case[i] == ']':
-                stack.pop(-1)
-            elif stack[-1] == '{' and case[i] == '}':
-                stack.pop(-1)
+            elif stack[-1] == '{' and case[i] == '}':          # 각 괄호 별로 포함관계 맞다면
+                stack.pop()                                    # stack에서 최상위 pop
             elif stack[-1] == '(' and case[i] == ')':
-                stack.pop(-1)
-            else:
-                ans = 0
+                stack.pop()
+            else:                                              # 오른쪽 괄호와 짝이 안맞다면
+                ans = 0                                        # 0, break
                 break
-    if stack != []:
+    if stack != []:                                            # 짝이 다 맞다면 stack은 비어야하므로
         ans = 0
         print(f'#{tc+1} {ans}')
     else:
