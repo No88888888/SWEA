@@ -29,23 +29,27 @@ P개의 버스 정류장에 대해 각 정류장에 몇 개의 버스 노선이 
 
 j번째 정수는 Cj번 버스 정류장을 지나는 버스 노선의 개수여야 한다.'''
 for tc in range(int(input())):
-    N = int(input())
-    nosun = []
-
+    N = int(input())                        # 노선의 갯수
+    nosun = []                              
+    stop_number = []                        
     for _ in range(N):
         A, B = map(int, input().split())
-        nosun += [[A, B]]
+        nosun += [A, B]                     # 노선 정보
 
     P = int(input())
     for _ in range(P):
-        int(input())
-    bus_stop = [0]*P
+        stop_number += [int(input())]       # 정류장 번호
+    bus_stop = [0]*P                        # 해당 정류장 지나는 노선의 갯수 리스트
 
-
+    for i in range(0, len(nosun), 2):               # 노선 리스트에 정보가 쌍으로 들어가 있기 때문
+        for j in range(nosun[i], nosun[i+1]+1):     # nosun의 i부터 i+1까지의 정류장에 버스가 섬
+            for k in range(len(stop_number)):       
+                if j == stop_number[k]:             # 만약 노선 주어진 노선정보와 주어진 버스정류장 번호와 일치하면
+                    bus_stop[k] = bus_stop[k] + 1   # 1씩 더해줌
     
-    for i in range(len(nosun)):
-        for j in range(nosun[i][0]-1, nosun[i][1]):
-            bus_stop[j] = bus_stop[j] + 1
-
     result = ' '.join(map(str, bus_stop))
     print(f'#{tc+1} {result}')
+    
+    
+                    
+                    
