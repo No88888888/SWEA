@@ -39,35 +39,24 @@ M x M 크기의 파리채를 한 번 내리쳐 최대한 많은 파리를 죽이
 import sys
 input=sys.stdin.readline
 
-for T in range(int(input())):
+def max(arr):           # max 함수
+    maxnum = 0
+    for i in arr:
+        if maxnum < i:
+            maxnum = i
+    return maxnum
+
+for tc in range(int(input())):
     N, M = map(int, input().split())
-    for _ in range(N*N):
-        list_a = list(int(input()))
-        for i in range(N*N-(N*(M-1))-M):
-            for j in range(M):
-                sum(list_a[i:i+M]
-                    i+N:i+N+M
+    fly = [list(map(int, input().split())) for _ in range(N)]
+    kill = 0                # 한번에 죽인 파리 수
+    hap = []                # 죽인 파리 수들의 list
 
-
-
-import sys
-input = sys.stdin.readline
-
-for T in range(int(input())):
-    N, M = map(int, input().split())
-    list_a = []
-    
-    for i in range(N):
-        list_a = list_a + [list(map(int, input().split()))]
-    for j in range(N):
-        s = sum(list_a[j][j:j+M])
-        list_b = []
-        for k in range(j+1, j+M):
-            list_b.append(s + (sum(list_a[k][j:j+M])))
-        print(list_b)
-
-
-# list_a= [1, 2, 3, 4, 5, 6, 7]
-# for i in range(3):
-#     s = sum(list_a[i:i+4])
-#     print(s)
+    for i in range(N-M+1):
+        for j in range(N-M+1):
+            for k in range(i, i+M):
+                for h in range(j, j+M):
+                    kill += fly[k][h]
+            hap += [kill]
+            kill = 0
+    print(f'#{tc+1} {max(hap)}')
