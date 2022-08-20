@@ -25,22 +25,22 @@
 각 줄마다 "#T" (T는 테스트 케이스 번호)를 출력한 뒤, 답을 출력한다.
 '''
 
-A = [1,2,3,4,5,6,7,8,9,10,11,12]
-for tc in range(int(input())):
-    N, K = map(int, input().split())
-    for i in range(1<<N):
-        for j in range(N):
-            if 
-arr = list(map(int, input().split()))
+# A = [1,2,3,4,5,6,7,8,9,10,11,12]
+# for tc in range(int(input())):
+#     N, K = map(int, input().split())
+#     for i in range(1<<N):
+#         for j in range(N):
+#             if 
+# arr = list(map(int, input().split()))
 
-n = len(arr)
+# n = len(arr)
 
-for i in range(1<<n):
-	for j in range(n):
-		if i & (1<<j):
-			print(arr[j], end=", ")
-	print()
-print()
+# for i in range(1<<n):
+# 	for j in range(n):
+# 		if i & (1<<j):
+# 			print(arr[j], end=", ")
+# 	print()
+# print()
 
 for t in range(1, int(input())+1):                  # 테스트케이스 입력
     N, K = map(int, input().split())                # N, K 값 입력

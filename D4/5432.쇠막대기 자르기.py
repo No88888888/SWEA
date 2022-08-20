@@ -44,5 +44,25 @@
 
 각 테스트 케이스마다 #T를 출력하고 한 칸을 띄운 후, 잘려진 조각의 총 개수를 출력한다.
 '''
+
+# 규칙을 찾는 것이 관건
 for tc in range(int(input())):
+    stick = list(input())
+    result = 0
+    count = 0
     
+    for i in range(len(stick)-1):
+        if stick[i] == '(' and stick[i+1] == '(':   # 연속으로 막대기가 쌓이면 해당 개수만큼 count +1
+            count += 1
+        elif stick[i] == '(' and stick[i+1] == ')': # 레이저를 만나면 쌓인 막대기 개수만큼 결과에 +
+            result += count
+        elif stick[i] == ')' and stick[i+1] == ')': # 막대기가 끝나면 count -1 해주고 result에 + 1
+            count -= 1 
+            result += 1
+            
+    print(f'#{tc+1} {result}')
+        
+    
+    
+# ()(((()())(())()))(())
+# (((()(()()))(())()))(()())

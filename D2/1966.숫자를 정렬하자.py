@@ -23,7 +23,7 @@ N 은 5 이상 50 이하이다.
 def select_sort(arr):                   # 선택정렬 함수
     for i in range(len(arr)-1):
         min_idx = i                     # 최솟값 인덱스를 리스트 i 인덱스로 지정
-        for j in range(i+1, len(arr)):  # i의 값돠 다음 인덱스들의 값 비교하여   
+        for j in range(i+1, len(arr)):  # i의 값과 다음 인덱스들의 값 비교하여   
             if arr[min_idx] > arr[j]:   # 보다 작은 값의 인덱스를
                 min_idx = j             # 최소값  인덱스로 바꿈
         arr[min_idx], arr[i] = arr[i], arr[min_idx] # 리스트 전체 순회 후 찾은 최소값 인덱스의 값과 i의 값의 자리를 바꿔줌
