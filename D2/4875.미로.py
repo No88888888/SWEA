@@ -42,80 +42,59 @@ NxN 크기의 미로에서 출발지에서 목적지에 도착하는 경로가 �
 
 for tc in range(int(input())):
     N = int(input())
-    miro = [list(input()) for _ in range(N)]
-    for i in range(len(miro)):
-        miro[i] = list(map(int, miro[i]))
+    miro = [list(map(int, input())) for _ in range(N)]
 
-    for i in range(N):
+    for i in range(N):                      # 패딩 작업
         miro[i] = [1] + miro[i] + [1]
     miro = [[1] * (N+2)] + miro + [[1] * (N+2)]
+    
 
-    di = [0, -1, 0, 1] # 좌상우하
+    di = [0, -1, 0, 1]                      # 좌상우하
     dj = [-1, 0, 1, 0]
-    stack = []
-    ans = 0
-
-    for i in range(N+2):
+    stack = []                              # 갈림길 좌표
+    visited = [[] for _ in range(N+2)]      # 방문한 좌표
+    ans, direction = 0, 0                   # 답, 방향
+    for i in range(N+2):                    
         for j in range(N+2):
-            if miro[i][j] == 2:
+            if miro[i][j] == 1:             # miro의 1인 값을 visited에도 넣어줌
+                visited[i] += [1]
+            else:
+                visited[i] += [0]
+            if miro[i][j] == 2:             # 시작지점 좌표 구함
                 sx = i
                 sy = j
-                break
-    sx, sy = x, y
-   
-    while miro[x][y] != 3:
-        sum = 0
-        for i in range(4):
-            nx = x + di[i]
-            ny = y + dj[i]
-            sum += miro[nx][ny]
-            nx, ny = 0, 0
-        if sum == 4:
-            if stack:
-                x = stack[-1][0]
+                
+
+    x, y = sx, sy
+    while True:
+        visited[x][y] = 1        # 방문한 곳은 1 넣어줌
+        if visited[x-1][y] and visited[x+1][y] and visited[x][y-1] and visited[x][y+1] and x == sx and y == sy: # 주변이 다 방문했고 시작지점이면
+            ans = 0              # 탈출할 수 없기때문에 0
+            break
+        if visited[x-1][y] and visited[x+1][y] and visited[x][y-1] and visited[x][y+1]: # 주변이 다 방문했고
+            if stack:            # stack에 뭔가 있다면
+                x = stack[-1][0] # 최근 갈림길로 돌아간다
                 y = stack[-1][1]
                 stack.pop()
-                continue
-            else:
-                x = sx
-                y = sy
-                for i in range(4):
-                    nx = x + di[i]
-                    ny = y + dj[i]
-                    sum += miro[nx][ny]
-                    nx, ny = 0, 0
-                    if sum == 4:
-                        ans = 0
-                        out = True
-                    else:
-                        
+            else:                # stack에 아무것도 없다면
+                x, y = sx, sy    # 시작지점으로 돌아간다
+                
+        if visited[x-1][y] + visited[x+1][y] + visited[x][y-1] + visited[x][y+1] < 3: # 주변 합이 3 이하라면
+            stack.append([x,y]) # 갈림길이기 때문에 stack에 저장
 
-        elif sum == 3:
-            for i in range(4):
-                nx = x + di[i]
-                ny = y + dj[i]
-                if miro[nx][ny] == 0:
-                    x = nx
-                    y = ny
-        elif sum == 2 or sum == 1:
-            stack.append([x, y])
-            for i in range(4):
-                nx = x + di[i]
-                ny = y + dj[i]
-                if miro[nx][ny] == 0:
-                    x = nx
-                    y = ny
-        if miro[x][y] == 3:
-            ans = 1
+        # --- 이동 ---    
+        x += di[direction]
+        y += dj[direction]
+        if miro[x][y] == 3:     # 이동한 곳이 3이라면 탈출
+            ans = 1             
             break
-
         
-
-        # if miro[nx][ny] == 0 and visited[nx][ny] == 0:
-        #     visited[x][y] = 1
-        #     x = nx
-        #     y = ny
-        # if miro[nx][ny] == 3:
-        #     ans = 1
-        #     break
-
+        if miro[x][y] == 1 or visited[x][y] == 1:  # 이동한곳 값이 1이거나 방문한 곳이라면
+            x -= di[direction]                     # 다시 되돌아오고
+            y -= dj[direction]                     
+            direction += 1                         # 방향을 튼다
+            if direction == 4:
+                direction = 0
+    print(f'#{tc+1} {ans}')
+            
+    
