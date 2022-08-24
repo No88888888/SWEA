@@ -41,6 +41,7 @@
 
 #부호와 함께 테스트 케이스의 번호를 출력하고, 공백 문자 후 테스트 케이스에 대한 답을 출력한다.
 # '''
+# dfs로 풀이
 
 def dfs(v, N):
     top = -1
@@ -74,3 +75,33 @@ for tc in range(10):
     stack = [0]*100
     print(f'#{T} {dfs(0,99)}')
 
+#-----------------------------------------------------------------------------------------
+
+# bfs로 풀이
+
+def bfs(v, N, t):                           # v 시작, N 마지막 정점, t 찾는 정점
+    visited = [0] * (N+1)
+    q = []
+    q.append(v)
+    visited[v] = 1
+    while q:
+        v = q.pop(0)
+        if v == t:                          # visited(v)
+            return visited[99]              # 목표발견
+        for w in adjList[v]:                # v에 인접하고 방문안한 w인큐, 표시
+            if visited[w] == 0:
+                q.append(w)
+                visited[w] = visited[v] + 1
+    return 0
+
+for tc in range(10):            
+    T, E = map(int, input().split())        # TC의 넘버와 간선의 갯수 
+    arr = list(map(int, input().split()))   # 간선 쌍 리스트
+    adjList = [[] for _ in range(100)]
+
+    for i in range(E):
+        a, b = arr[i*2], arr[i*2 + 1]
+        adjList[a].append(b)                # 단방향
+
+
+    bfs(0,99, 99)                           # 시작, 마지막, 목표 정점 

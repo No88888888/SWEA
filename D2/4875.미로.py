@@ -39,7 +39,7 @@ NxN 크기의 미로에서 출발지에서 목적지에 도착하는 경로가 �
 
 각 줄마다 "#T" (T는 테스트 케이스 번호)를 출력한 뒤, 계산결과를 정수로 출력하거나 또는 ‘error’를 출력한다.
 '''
-
+# 백트래킹 이용 풀이
 for tc in range(int(input())):
     N = int(input())
     miro = [list(map(int, input())) for _ in range(N)]
@@ -97,4 +97,36 @@ for tc in range(int(input())):
                 direction = 0
     print(f'#{tc+1} {ans}')
             
+    # ==========================================================================
     
+    # bfs 이용 풀이
+    def bfs(i, j, N):
+        visited = [[0]*N for _ in range(N)]
+        q = []
+        q.append((i, j))
+        visited[i][j] = 1
+        while q:
+            i, j = q.pop(0)
+            if maze[i][j] == 3:     # 3번인지 확인
+                return 1
+            for di, dj in [[0,1], [1,0], [0,-1], [-1,0]]:
+                ni, nj = i+di, j+dj
+                if 0<ni<N and 0<=nj<N and maze[ni][nj] !=1 and visited[ni][nj] ==0:
+                    q.append((ni, nj))
+                    visited[ni][nj] = visited[i][j] + 1
+        return 0
+             
+    for tc in range(int(input())):
+        N = int(input())
+        maze = [list(map(int, input())) for _ in range(N)]
+        sti = -1
+        stj = -1
+        for i in range(N):
+            for j in range(N):
+                if miro[i][j] == 2:             # 시작지점 좌표 구함
+                    sti, stj = i, j
+                    break
+            if sti != -1:
+                break
+                
+        print(f'#{tc} {bfs(sti, stj, N)}')
