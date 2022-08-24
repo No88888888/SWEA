@@ -19,28 +19,39 @@
 각 줄마다 "#T" (T는 테스트 케이스 번호)를 출력한 뒤, 성적표에 표시될 총점의 최댓값을 출력한다.
 '''
 
-def sum(arr):
+def sum(arr):       # sum 함수
     s = 0
     for i in arr:
         s += i
     return s
-def max_num(arr):
-    maxnum = 0
+def down(arr):      # 내림차순 정렬 함수
     for i in range(len(arr)):
-        if maxnum < arr[i]:
-            maxnum = arr[i]
-    return maxnum
+        for j in range(len(arr)-1-i):
+            if arr[j] < arr[j+1]:
+                arr[j], arr[j+1] = arr[j+1], arr[j]
+    return arr
  
 for tc in range(int(input())):
     N, K = map(int, input().split())
-    score = list(map(int, input().split()))
-   
-    subset = [[]]
-    for num in score:
-        for i in range(len(subset)):
-            subset.append(subset[i]+[num])
-    print(subset)
-    print()
+    score = list(map(int, input().split())) # 점수 리스트
+    down(score)                             # 내림차순 정렬
+    print(f'#{tc+1} {sum(score[:K])}')      # 앞에서부터 K개수만큼 더한값 출력
+
+#--------------------------------------------------------
+# 모든 부분집합을 구하는 방식은 런타임 에러가 발생한다(메모리 초과인듯)
+
+    # subset = [[]]
+    # for num in score:
+    #     for i in range(len(subset)):
+    #         subset.append(subset[i]+[num])
+    
+    # a = []
+    # for i in subset:
+    #     if len(i) == K:
+    #         print(i)
+    #         a += [sum(i)]
+    # print(f'#{tc+1} {max_num(a)}')
+
             
     # result = []
     # for i in range(1<<n):
@@ -49,13 +60,4 @@ for tc in range(int(input())):
             # if i & (1<<j):
                 # subset.append(score[j])
         # result.append(subset)
-    
-    a = []
-    for i in subset:
-        if len(i) == K:
-            print(i)
-            a += [sum(i)]
-    print()
-    print(a)
-    print(f'#{tc+1} {max_num(a)}')
 
