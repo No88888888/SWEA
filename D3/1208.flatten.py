@@ -50,21 +50,21 @@ A’부분의 상자를 옮겨서, C부분에 덤프하였다. 이때 C 대신 C
 # import sys
 # sys.stdin = open("input.txt", "r")
 
-def mmax(arr):
+def mmax(arr):          # max 함수
     mmax = arr[0]
     for i in arr:
         if i > mmax:
             mmax = i
     return mmax
 
-def mmin(arr):
+def mmin(arr):         # min 함수
     mmin = arr[0]
     for i in arr:
         if i < mmin:
             mmin = i
     return mmin
 
-def iidx(arr,n):
+def iidx(arr,n):        # 특정 값의 인덱스 찾기 함수
     for idx, v in enumerate(arr):
         if v == n:
             return idx
@@ -75,11 +75,11 @@ for tc in range(10):
     box = list(map(int, input().split()))
     
     for i in range(dump):
-        H = iidx(box, mmax(box))
-        L = iidx(box, mmin(box))
-        box[H] -= 1
+        H = iidx(box, mmax(box))    # box리스트에서 최고 높은 곳의 인덱스 찾기
+        L = iidx(box, mmin(box))    # box리스트에서 최고 낮은 곳의 인덱스 찾기
+        box[H] -= 1                 # 해당 인덱스에서 평탄화 작업
         box[L] += 1
         
-    print(f'#{tc+1} {mmax(box) - mmin(box)}')
+    print(f'#{tc+1} {mmax(box) - mmin(box)}') #평탄화 후 최대와 최소의 차 출력
     
     

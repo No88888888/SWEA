@@ -84,8 +84,7 @@ for _ in range(1, 11):
             ny = y + dy[j]
             
             if 0<=nx<100 and 0<=ny<100 and ladder[nx][ny] == 1: # 이동 가능 범위 내이면서 값이 1이면
-                ladder[x][y] = 0                                # 이전 칸으로 돌아오지 않기 위해 0으로 만들어 주고
-                
+                ladder[x][y] = 0        # 이전 칸으로 돌아오지 않기 위해 0으로 만들어 주고
                 x = nx                  # 값을 더해 이동
                 y = ny
     print(f'#{tc} {y}')

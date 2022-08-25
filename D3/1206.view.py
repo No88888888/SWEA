@@ -43,12 +43,12 @@ for tc in range(10):
     A = list(map(int, input().split()))
     count = 0
 
-    for i in range(2, N-2):     # 양쪽 끝 2칸씩은 0이므로
-        if A[i] > A[i-2] and A[i] > A[i-1] and A[i] > A[i+1] and A[i] > A[i+2]:     #idx의 값이 양옆 두칸씩보다 크다면
+    for i in range(2, N-2):                     # 양쪽 끝 2칸씩은 0이므로
+        if A[i] > A[i-2] and A[i] > A[i-1] and A[i] > A[i+1] and A[i] > A[i+2]: #idx의 값이 양옆 두칸씩보다 크다면
             list_side = []
-            if A[i-2] >= A[i-1]:                                                   # 양옆 4개의 idx들의 값을 비교하여 그 중
-                list_side += [A[i-2]]                                           # 가장 큰 값을 찾아내 A[i]의 차를
-            else:                                                                  # count에 추가해준다
+            if A[i-2] >= A[i-1]:                # 양옆 4개의 idx들의 값을 비교하여 그 중
+                list_side += [A[i-2]]           # 가장 큰 값을 찾아내 A[i]의 차를
+            else:                               # count에 추가해준다
                 list_side += [A[i-1]]
             if A[i+2] >= A[i+1]:
                 list_side += [A[i+2]]
@@ -58,8 +58,6 @@ for tc in range(10):
                 count += (A[i] - list_side[0])
             else:
                 count += (A[i] - list_side[1])
-        else:       # else 없어도됨
-            continue
     print(f'#{tc+1} {count}')
 
 
