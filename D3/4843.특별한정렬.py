@@ -62,7 +62,7 @@ N개의 정수가 주어지면 가장 큰 수, 가장 작은 수, 2번째 큰 �
 
 for tc in range(int(input())):
     N = int(input())
-    num = list(map(int, input().split()))   # 의임의 숫자 리스트
+    num = list(map(int, input().split()))   # 임의의 숫자 리스트
     s= [0]*N                                # 같은 길이의 빈 리스트 구축
     
     for i in range(len(num)):               # 입력 받은 리스트를 내림차순 정렬
@@ -88,4 +88,4 @@ for tc in range(int(input())):
     print(f'#{tc+1}', end =' ')
     for i in range(10):
         print(s[i], end=' ')
-    print(' ')                              # 없으면 프린트가 끊기지 않아 다음 테스트 케이스의 N까지 출력된다
+    print()                              

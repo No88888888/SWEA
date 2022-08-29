@@ -38,22 +38,7 @@ N 과 M은 3 이상 20 이하이다.
 
 (t는 테스트 케이스의 번호를 의미하며 1부터 시작한다.)
 '''
-def big(a, b):          # 더 큰 정수 반환 함수
-    if a > b:
-        return a
-    else:
-        return b
-def small(a,b):         # 더 작은 정수 반환 함수
-    if a< b:
-        return a
-    else:
-        return b
-def max(arr):           # 최대값 함수
-    maxnum = 0
-    for i in arr:
-        if i > maxnum:
-            maxnum = i
-    return maxnum
+
 def mmax(a,b):          # 더 길이가 긴 리스트 반환 함수
     if len(a) > len(b):
         return a
@@ -71,9 +56,9 @@ for tc in range(int(input())):
     B = list(map(int, input().split()))
     i,j = 0,0
     result = []
-    while j <= big(len(A), len(B))- small(len(A), len(B)):  #긴 리스트에서 짧은 리스트 뺀만큼 순회
+    while j <= max(len(A), len(B))- min(len(A), len(B)):  #긴 리스트에서 짧은 리스트 뺀만큼 순회
         s = 0
-        for i in range(small(len(A), len(B))):  # 짧은 리스트만큼 순회
+        for i in range(min(len(A), len(B))):  # 짧은 리스트만큼 순회
             s += mmax(A,B)[i+j]*mmin(A,B)[i]    # 순회하며 곱해서 더해줌
         result.append(s)
         j += 1
